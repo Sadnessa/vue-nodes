@@ -4,6 +4,8 @@ import { Nodes, useConnections, Node } from "vue-nodes";
 import { computed, ref } from "vue";
 import type { Connection, ShaderNode } from "../../demo/shader/nodes";
 import AppLayout from "../../components/AppLayout.vue";
+import AppButton from '../../components/AppButton.vue'
+import AppSelect from '../../components/AppSelect.vue'
 
 const items = ref<Node[]>([
   {
@@ -127,6 +129,11 @@ const result = computed(() => calculate());
       <p>This is a math example, where you can create math expressions.</p>
 
       <p>You have two "Number" inputs and can connect them trough math nodes.</p>
+
+      <AppSelect />
+      <AppButton class="add-node-btn">
+        Add node
+      </AppButton>
     </template>
 
     <Nodes v-model:nodes="items" v-model:connections="connections">
