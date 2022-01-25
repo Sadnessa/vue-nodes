@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { createSourceNode, createTimeNode, createFragmentShaderNode, createVec4Node, createOutputNode, createMathNode } from './../../demo/shader/nodes'
 import { Nodes, useConnections } from '../../../../src'
 import { ref } from 'vue'
 import type { Connection, ShaderNode } from '../../demo/shader/nodes';
@@ -12,6 +13,23 @@ const items = ref<ShaderNode<any>[]>(itemsPreset)
 const connections = ref<Connection<ShaderNode>[]>(connectionsPreset)
 
 const { connectFrom, connectTo, registerPoint } = useConnections(connections)
+
+const shaderNodeList:any = {
+  time: createTimeNode,
+  source: createSourceNode,
+  fragment: createFragmentShaderNode,
+  vector: createVec4Node,
+  output: createOutputNode,
+  math: createMathNode,
+}
+
+const selectOptions = Object.keys(shaderNodeList)
+
+const addNode = (nodeName:string) => {
+  const fn = shaderNodeList[nodeName]
+  const node = fn()
+  items.value.push(node)
+}
 </script>
 
 <template>
@@ -19,7 +37,7 @@ const { connectFrom, connectTo, registerPoint } = useConnections(connections)
     <template #sidebar>
       <p>This is a shader generator example, where you can create GLSL shader and preview it.</p>
       
-      <AppSelect />
+      <AppSelect :nodeList="selectOptions" @nodeSelected="addNode" />
       <AppButton class="add-node-btn">
         Add node
       </AppButton>

@@ -1,41 +1,30 @@
 <template>
   <div class="select-wrapper">
     <div class="border-gradient" v-if="isFocused"></div>
-    <div
-      class="input-wrapper"
-      @click="showSelect"
-    >
+    <div class="input-wrapper" @click="showSelect">
       <div class="icon-wrapper">
         <span class="material-icons">search</span>
       </div>
       <input @focus="isFocused = true" @blur="isFocused = false" />
     </div>
     <div class="select" v-if="isVisible">
-      <div class="nodes" v-for="node in nodeList" :key="node">{{ node }}</div>
+      <div class="nodes" v-for="node in nodeList" :key="node" @click="onNodeClick(node)"> {{ node }}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    nodeList: {
+      type: Array,
+    },
+  },
+
   data() {
     return {
       isVisible: false,
       isFocused: false,
-      nodeList: [
-        "flfldf",
-        "fdkfkd",
-        "fdkfkdfk",
-        "flfldf",
-        "fdkfkd",
-        "fdkfkdfk",
-        "flfldf",
-        "fdkfkd",
-        "fdkfkdfk",
-        "flfldf",
-        "fdkfkd",
-        "fdkfkdfk",
-      ],
     };
   },
 
@@ -60,6 +49,10 @@ export default {
     onWindowClick() {
       this.isVisible = false;
     },
+
+    onNodeClick(node) {
+      this.$emit('nodeSelected', node)
+    }
   },
 };
 </script>
@@ -77,7 +70,7 @@ export default {
   width: 100%;
   height: 100%;
   padding: 3px;
-  top: 50%; 
+  top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 5px;
@@ -113,6 +106,7 @@ export default {
     background: rgb(223, 223, 223);
     font-size: 16px;
     padding: 8px;
+    color: black;
   }
 }
 
