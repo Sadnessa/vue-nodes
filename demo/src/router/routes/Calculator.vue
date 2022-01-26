@@ -134,10 +134,10 @@ const onDelete = (node: any) => {
 
       <p>You have two "Number" inputs and can connect them trough math nodes.</p>
 
-      <AppSelect />
+      <!-- <AppSelect />
       <AppButton class="add-node-btn">
         Add node
-      </AppButton>
+      </AppButton> -->
     </template>
 
     <Nodes v-model:nodes="items" v-model:connections="connections">
