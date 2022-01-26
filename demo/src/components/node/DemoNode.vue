@@ -6,8 +6,15 @@ const props = defineProps({
 
 <template>
   <div class="demo-node">
-    <div class="demo-node__header" v-if="title">
-      {{ title }}
+    <div class="demo-node__header">
+      <div class="demo-node__title">
+        {{ title }}
+      </div>
+      <div class="demo-node__delete" @click="$emit('delete')">
+        <span class="material-icons-round">
+          close
+        </span>
+      </div>
     </div>
 
     <div class="demo-node__main">
@@ -36,12 +43,27 @@ const props = defineProps({
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
     &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background: linear-gradient(35deg, #2193b0, #6dd5ed);
       color: white;
-      padding: 8px;
+      padding: 12px;
       cursor: pointer;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
+
+      .demo-node__delete {
+        padding: 0px 0px 0px 18px;
+        
+        .material-icons-round {
+          font-size: 20px;
+          font-weight: 900;
+          vertical-align: middle;
+          color: rgb(207, 94, 94);
+          opacity: 0;
+        }
+      }
     }
 
     &__main {
@@ -67,6 +89,12 @@ const props = defineProps({
     &__content {
       width: 100%;
       text-align: left;
+    }
+
+    &:hover {
+      .material-icons-round {
+        opacity: 1;
+      }
     }
   }
 </style>
