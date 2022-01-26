@@ -121,6 +121,10 @@ const calculate = () => {
 };
 
 const result = computed(() => calculate());
+
+const onDelete = (node: any) => {
+  items.value = items.value.filter((item) => {return item !== node})
+}
 </script>
 
 <template>
@@ -138,7 +142,7 @@ const result = computed(() => calculate());
 
     <Nodes v-model:nodes="items" v-model:connections="connections">
       <template #node-content="{ node }">
-        <DemoNode :title="node.title">
+        <DemoNode :title="node.title" @delete="onDelete(node)">
           <template #inputs>
             <template v-for="(point, pointName) in node.points" :key="pointName">
               <DemoButton

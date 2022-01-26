@@ -32,7 +32,7 @@ const source = computed(() => {
 </script>
 
 <template>
-  <DemoNode :title="node.title">
+  <DemoNode :title="node.title" @delete="$emit('delete')">
     <template #inputs>
       <DemoButton
         v-for="pointName in ['in']"

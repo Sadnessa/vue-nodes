@@ -26,7 +26,7 @@ const isConnected = (pointName: string) => !searchConnection(undefined, undefine
 </script>
 
 <template>
-  <DemoNode :title="node.title">
+  <DemoNode :title="node.title" @delete="$emit('delete')">
     <template #inputs>
       <DemoInput style="margin-left: 8px;" v-model="node.value.fn" />
       <DemoButton

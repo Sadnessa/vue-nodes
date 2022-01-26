@@ -15,7 +15,7 @@ defineEmits({
 </script>
 
 <template>
-  <DemoNode :title="node.title">
+  <DemoNode :title="node.title" @delete="$emit('delete')">
     <template #outputs>
       <DemoButton 
         color="linear-gradient(to right, #1d976c, #93f9b9)" 

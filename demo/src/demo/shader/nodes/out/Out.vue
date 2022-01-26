@@ -42,7 +42,7 @@ const shaderSource = computed(() => path.value.code)
 </script>
 
 <template>
-  <DemoNode class="demo-out-node" :title="node.title">
+  <DemoNode class="demo-out-node" :title="node.title" @delete="$emit('delete')">
     <Shader2D v-if="shaderSource" :fragment="shaderSource" @ready="onCanvasReady"/>
     <template #inputs>
       <DemoButton color="linear-gradient(145deg, #ff4e50, #f9d423)" @register-point="registerPoint(node, 'in')($event)" @circle-click="$emit('connect-to', 'in')"/>

@@ -30,6 +30,10 @@ const addNode = (nodeName:string) => {
   const node = fn()
   items.value.push(node)
 }
+
+const onDelete = (node: ShaderNode) => {
+  items.value = items.value.filter((item) => {return item !== node})
+}
 </script>
 
 <template>
@@ -52,6 +56,7 @@ const addNode = (nodeName:string) => {
           :register-point="registerPoint"
           @connect-from="connectFrom((node as ShaderNode) , $event)"
           @connect-to="connectTo((node as ShaderNode), $event)"
+          @delete="onDelete(node)"
         />
       </template>
     </Nodes>  
